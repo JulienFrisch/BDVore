@@ -8,12 +8,15 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class WebViewController: UIViewController {
 
     @IBOutlet weak var detailDescriptionLabel: UILabel!
+    @IBOutlet var webView: UIWebView!
+    var blogPostURL: NSURL?
 
-
-    var detailItem: AnyObject? {
+    
+    //TODO: What to do with this? Kind of replaced with blogPostURL
+    /*var detailItem: AnyObject? {
         didSet {
             // Update the view.
             self.configureView()
@@ -27,12 +30,21 @@ class DetailViewController: UIViewController {
                 label.text = detail.description
             }
         }
-    }
+    }*/
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.configureView()
+        //self.configureView()
+        
+        //to be updated
+        if let url = blogPostURL{
+            let urlRequest: NSURLRequest = NSURLRequest(URL: url)
+            self.webView.loadRequest(urlRequest)
+        } else {
+            print("No URL found")
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {

@@ -7,14 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F6DEC201CCD737E00977DEC /* BlogPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6DEC1F1CCD737E00977DEC /* BlogPost.swift */; };
+		3F9954A11CBDBC0300BA5FCF /* BlogBDService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9954A01CBDBC0300BA5FCF /* BlogBDService.swift */; };
 		3FAB73F41CBC4DF3000DD5F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAB73F31CBC4DF3000DD5F5 /* AppDelegate.swift */; };
 		3FAB73F61CBC4DF3000DD5F5 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAB73F51CBC4DF3000DD5F5 /* MasterViewController.swift */; };
-		3FAB73F81CBC4DF3000DD5F5 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAB73F71CBC4DF3000DD5F5 /* DetailViewController.swift */; };
+		3FAB73F81CBC4DF3000DD5F5 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAB73F71CBC4DF3000DD5F5 /* WebViewController.swift */; };
 		3FAB73FB1CBC4DF3000DD5F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FAB73F91CBC4DF3000DD5F5 /* Main.storyboard */; };
 		3FAB73FD1CBC4DF3000DD5F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FAB73FC1CBC4DF3000DD5F5 /* Assets.xcassets */; };
 		3FAB74001CBC4DF3000DD5F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FAB73FE1CBC4DF3000DD5F5 /* LaunchScreen.storyboard */; };
-		3FAB740B1CBC4DF3000DD5F5 /* BlogReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAB740A1CBC4DF3000DD5F5 /* BlogReaderTests.swift */; };
-		3FAB74161CBC4DF3000DD5F5 /* BlogReaderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAB74151CBC4DF3000DD5F5 /* BlogReaderUITests.swift */; };
+		3FAB740B1CBC4DF3000DD5F5 /* BDVoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAB740A1CBC4DF3000DD5F5 /* BDVoreTests.swift */; };
+		3FAB74161CBC4DF3000DD5F5 /* BDVoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAB74151CBC4DF3000DD5F5 /* BDVoreUITests.swift */; };
+		3FAB74241CBC833D000DD5F5 /* NetworkOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAB74231CBC833D000DD5F5 /* NetworkOperation.swift */; };
+		3FB040491CD15741009EA4DF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB040481CD15741009EA4DF /* Default-568h@2x.png */; };
+		3FB0404D1CD169E8009EA4DF /* SWXMLHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB0404C1CD169E8009EA4DF /* SWXMLHash.swift */; };
+		3FEA645B1CCED3230059A182 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEA645A1CCED3230059A182 /* Date.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,20 +41,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3FAB73F01CBC4DF3000DD5F5 /* BlogReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlogReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F6DEC1F1CCD737E00977DEC /* BlogPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogPost.swift; sourceTree = "<group>"; };
+		3F9954A01CBDBC0300BA5FCF /* BlogBDService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogBDService.swift; sourceTree = "<group>"; };
+		3FAB73F01CBC4DF3000DD5F5 /* BDVore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BDVore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FAB73F31CBC4DF3000DD5F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3FAB73F51CBC4DF3000DD5F5 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
-		3FAB73F71CBC4DF3000DD5F5 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		3FAB73F71CBC4DF3000DD5F5 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		3FAB73FA1CBC4DF3000DD5F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3FAB73FC1CBC4DF3000DD5F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3FAB73FF1CBC4DF3000DD5F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3FAB74011CBC4DF3000DD5F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3FAB74061CBC4DF3000DD5F5 /* BlogReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlogReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3FAB740A1CBC4DF3000DD5F5 /* BlogReaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogReaderTests.swift; sourceTree = "<group>"; };
+		3FAB74061CBC4DF3000DD5F5 /* BDVore.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BDVore.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FAB740A1CBC4DF3000DD5F5 /* BDVoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BDVoreTests.swift; sourceTree = "<group>"; };
 		3FAB740C1CBC4DF3000DD5F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3FAB74111CBC4DF3000DD5F5 /* BlogReaderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlogReaderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3FAB74151CBC4DF3000DD5F5 /* BlogReaderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogReaderUITests.swift; sourceTree = "<group>"; };
+		3FAB74111CBC4DF3000DD5F5 /* BDVore.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BDVore.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FAB74151CBC4DF3000DD5F5 /* BDVoreUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BDVoreUITests.swift; sourceTree = "<group>"; };
 		3FAB74171CBC4DF3000DD5F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3FAB74231CBC833D000DD5F5 /* NetworkOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkOperation.swift; sourceTree = "<group>"; };
+		3FB040481CD15741009EA4DF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		3FB0404C1CD169E8009EA4DF /* SWXMLHash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWXMLHash.swift; sourceTree = "<group>"; };
+		3FEA645A1CCED3230059A182 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,9 +91,10 @@
 		3FAB73E71CBC4DF3000DD5F5 = {
 			isa = PBXGroup;
 			children = (
-				3FAB73F21CBC4DF3000DD5F5 /* BlogReader */,
-				3FAB74091CBC4DF3000DD5F5 /* BlogReaderTests */,
-				3FAB74141CBC4DF3000DD5F5 /* BlogReaderUITests */,
+				3FB040481CD15741009EA4DF /* Default-568h@2x.png */,
+				3FAB73F21CBC4DF3000DD5F5 /* BDVore */,
+				3FAB74091CBC4DF3000DD5F5 /* BDVoreTests */,
+				3FAB74141CBC4DF3000DD5F5 /* BDVoreUITests */,
 				3FAB73F11CBC4DF3000DD5F5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -89,51 +102,56 @@
 		3FAB73F11CBC4DF3000DD5F5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3FAB73F01CBC4DF3000DD5F5 /* BlogReader.app */,
-				3FAB74061CBC4DF3000DD5F5 /* BlogReaderTests.xctest */,
-				3FAB74111CBC4DF3000DD5F5 /* BlogReaderUITests.xctest */,
+				3FAB73F01CBC4DF3000DD5F5 /* BDVore.app */,
+				3FAB74061CBC4DF3000DD5F5 /* BDVore.xctest */,
+				3FAB74111CBC4DF3000DD5F5 /* BDVore.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		3FAB73F21CBC4DF3000DD5F5 /* BlogReader */ = {
+		3FAB73F21CBC4DF3000DD5F5 /* BDVore */ = {
 			isa = PBXGroup;
 			children = (
 				3FAB73F31CBC4DF3000DD5F5 /* AppDelegate.swift */,
 				3FAB73F51CBC4DF3000DD5F5 /* MasterViewController.swift */,
-				3FAB73F71CBC4DF3000DD5F5 /* DetailViewController.swift */,
+				3FAB73F71CBC4DF3000DD5F5 /* WebViewController.swift */,
+				3FEA645A1CCED3230059A182 /* Date.swift */,
 				3FAB73F91CBC4DF3000DD5F5 /* Main.storyboard */,
 				3FAB73FC1CBC4DF3000DD5F5 /* Assets.xcassets */,
 				3FAB73FE1CBC4DF3000DD5F5 /* LaunchScreen.storyboard */,
 				3FAB74011CBC4DF3000DD5F5 /* Info.plist */,
+				3FAB74231CBC833D000DD5F5 /* NetworkOperation.swift */,
+				3F9954A01CBDBC0300BA5FCF /* BlogBDService.swift */,
+				3F6DEC1F1CCD737E00977DEC /* BlogPost.swift */,
+				3FB0404C1CD169E8009EA4DF /* SWXMLHash.swift */,
 			);
-			path = BlogReader;
+			path = BDVore;
 			sourceTree = "<group>";
 		};
-		3FAB74091CBC4DF3000DD5F5 /* BlogReaderTests */ = {
+		3FAB74091CBC4DF3000DD5F5 /* BDVoreTests */ = {
 			isa = PBXGroup;
 			children = (
-				3FAB740A1CBC4DF3000DD5F5 /* BlogReaderTests.swift */,
+				3FAB740A1CBC4DF3000DD5F5 /* BDVoreTests.swift */,
 				3FAB740C1CBC4DF3000DD5F5 /* Info.plist */,
 			);
-			path = BlogReaderTests;
+			path = BDVoreTests;
 			sourceTree = "<group>";
 		};
-		3FAB74141CBC4DF3000DD5F5 /* BlogReaderUITests */ = {
+		3FAB74141CBC4DF3000DD5F5 /* BDVoreUITests */ = {
 			isa = PBXGroup;
 			children = (
-				3FAB74151CBC4DF3000DD5F5 /* BlogReaderUITests.swift */,
+				3FAB74151CBC4DF3000DD5F5 /* BDVoreUITests.swift */,
 				3FAB74171CBC4DF3000DD5F5 /* Info.plist */,
 			);
-			path = BlogReaderUITests;
+			path = BDVoreUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3FAB73EF1CBC4DF3000DD5F5 /* BlogReader */ = {
+		3FAB73EF1CBC4DF3000DD5F5 /* BDVore */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3FAB741A1CBC4DF3000DD5F5 /* Build configuration list for PBXNativeTarget "BlogReader" */;
+			buildConfigurationList = 3FAB741A1CBC4DF3000DD5F5 /* Build configuration list for PBXNativeTarget "BDVore" */;
 			buildPhases = (
 				3FAB73EC1CBC4DF3000DD5F5 /* Sources */,
 				3FAB73ED1CBC4DF3000DD5F5 /* Frameworks */,
@@ -143,14 +161,14 @@
 			);
 			dependencies = (
 			);
-			name = BlogReader;
+			name = BDVore;
 			productName = BlogReader;
-			productReference = 3FAB73F01CBC4DF3000DD5F5 /* BlogReader.app */;
+			productReference = 3FAB73F01CBC4DF3000DD5F5 /* BDVore.app */;
 			productType = "com.apple.product-type.application";
 		};
-		3FAB74051CBC4DF3000DD5F5 /* BlogReaderTests */ = {
+		3FAB74051CBC4DF3000DD5F5 /* BDVoreTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3FAB741D1CBC4DF3000DD5F5 /* Build configuration list for PBXNativeTarget "BlogReaderTests" */;
+			buildConfigurationList = 3FAB741D1CBC4DF3000DD5F5 /* Build configuration list for PBXNativeTarget "BDVoreTests" */;
 			buildPhases = (
 				3FAB74021CBC4DF3000DD5F5 /* Sources */,
 				3FAB74031CBC4DF3000DD5F5 /* Frameworks */,
@@ -161,14 +179,14 @@
 			dependencies = (
 				3FAB74081CBC4DF3000DD5F5 /* PBXTargetDependency */,
 			);
-			name = BlogReaderTests;
+			name = BDVoreTests;
 			productName = BlogReaderTests;
-			productReference = 3FAB74061CBC4DF3000DD5F5 /* BlogReaderTests.xctest */;
+			productReference = 3FAB74061CBC4DF3000DD5F5 /* BDVore.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		3FAB74101CBC4DF3000DD5F5 /* BlogReaderUITests */ = {
+		3FAB74101CBC4DF3000DD5F5 /* BDVoreUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3FAB74201CBC4DF3000DD5F5 /* Build configuration list for PBXNativeTarget "BlogReaderUITests" */;
+			buildConfigurationList = 3FAB74201CBC4DF3000DD5F5 /* Build configuration list for PBXNativeTarget "BDVoreUITests" */;
 			buildPhases = (
 				3FAB740D1CBC4DF3000DD5F5 /* Sources */,
 				3FAB740E1CBC4DF3000DD5F5 /* Frameworks */,
@@ -179,9 +197,9 @@
 			dependencies = (
 				3FAB74131CBC4DF3000DD5F5 /* PBXTargetDependency */,
 			);
-			name = BlogReaderUITests;
+			name = BDVoreUITests;
 			productName = BlogReaderUITests;
-			productReference = 3FAB74111CBC4DF3000DD5F5 /* BlogReaderUITests.xctest */;
+			productReference = 3FAB74111CBC4DF3000DD5F5 /* BDVore.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -196,6 +214,7 @@
 				TargetAttributes = {
 					3FAB73EF1CBC4DF3000DD5F5 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 87462R4ARA;
 					};
 					3FAB74051CBC4DF3000DD5F5 = {
 						CreatedOnToolsVersion = 7.3;
@@ -207,7 +226,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 3FAB73EB1CBC4DF3000DD5F5 /* Build configuration list for PBXProject "BlogReader" */;
+			buildConfigurationList = 3FAB73EB1CBC4DF3000DD5F5 /* Build configuration list for PBXProject "BDVore" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -220,9 +239,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3FAB73EF1CBC4DF3000DD5F5 /* BlogReader */,
-				3FAB74051CBC4DF3000DD5F5 /* BlogReaderTests */,
-				3FAB74101CBC4DF3000DD5F5 /* BlogReaderUITests */,
+				3FAB73EF1CBC4DF3000DD5F5 /* BDVore */,
+				3FAB74051CBC4DF3000DD5F5 /* BDVoreTests */,
+				3FAB74101CBC4DF3000DD5F5 /* BDVoreUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -233,6 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FAB74001CBC4DF3000DD5F5 /* LaunchScreen.storyboard in Resources */,
+				3FB040491CD15741009EA4DF /* Default-568h@2x.png in Resources */,
 				3FAB73FD1CBC4DF3000DD5F5 /* Assets.xcassets in Resources */,
 				3FAB73FB1CBC4DF3000DD5F5 /* Main.storyboard in Resources */,
 			);
@@ -259,8 +279,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3FAB73F81CBC4DF3000DD5F5 /* DetailViewController.swift in Sources */,
+				3FAB74241CBC833D000DD5F5 /* NetworkOperation.swift in Sources */,
+				3FB0404D1CD169E8009EA4DF /* SWXMLHash.swift in Sources */,
+				3FAB73F81CBC4DF3000DD5F5 /* WebViewController.swift in Sources */,
+				3FEA645B1CCED3230059A182 /* Date.swift in Sources */,
 				3FAB73F61CBC4DF3000DD5F5 /* MasterViewController.swift in Sources */,
+				3F6DEC201CCD737E00977DEC /* BlogPost.swift in Sources */,
+				3F9954A11CBDBC0300BA5FCF /* BlogBDService.swift in Sources */,
 				3FAB73F41CBC4DF3000DD5F5 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -269,7 +294,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3FAB740B1CBC4DF3000DD5F5 /* BlogReaderTests.swift in Sources */,
+				3FAB740B1CBC4DF3000DD5F5 /* BDVoreTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,7 +302,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3FAB74161CBC4DF3000DD5F5 /* BlogReaderUITests.swift in Sources */,
+				3FAB74161CBC4DF3000DD5F5 /* BDVoreUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,12 +311,12 @@
 /* Begin PBXTargetDependency section */
 		3FAB74081CBC4DF3000DD5F5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 3FAB73EF1CBC4DF3000DD5F5 /* BlogReader */;
+			target = 3FAB73EF1CBC4DF3000DD5F5 /* BDVore */;
 			targetProxy = 3FAB74071CBC4DF3000DD5F5 /* PBXContainerItemProxy */;
 		};
 		3FAB74131CBC4DF3000DD5F5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 3FAB73EF1CBC4DF3000DD5F5 /* BlogReader */;
+			target = 3FAB73EF1CBC4DF3000DD5F5 /* BDVore */;
 			targetProxy = 3FAB74121CBC4DF3000DD5F5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -405,10 +430,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = BlogReader/Info.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = BDVore/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.JuJuLab.BlogReader;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.JuJuLab.BDVore;
+				PRODUCT_NAME = BDVore;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -416,10 +444,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = BlogReader/Info.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = BDVore/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.JuJuLab.BlogReader;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.JuJuLab.BDVore;
+				PRODUCT_NAME = BDVore;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -430,8 +461,8 @@
 				INFOPLIST_FILE = BlogReaderTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.JuJuLab.BlogReaderTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BlogReader.app/BlogReader";
+				PRODUCT_NAME = BDVore;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BDVore.app/BDVore";
 			};
 			name = Debug;
 		};
@@ -442,8 +473,8 @@
 				INFOPLIST_FILE = BlogReaderTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.JuJuLab.BlogReaderTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BlogReader.app/BlogReader";
+				PRODUCT_NAME = BDVore;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BDVore.app/BDVore";
 			};
 			name = Release;
 		};
@@ -453,7 +484,7 @@
 				INFOPLIST_FILE = BlogReaderUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.JuJuLab.BlogReaderUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = BDVore;
 				TEST_TARGET_NAME = BlogReader;
 			};
 			name = Debug;
@@ -464,7 +495,7 @@
 				INFOPLIST_FILE = BlogReaderUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.JuJuLab.BlogReaderUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = BDVore;
 				TEST_TARGET_NAME = BlogReader;
 			};
 			name = Release;
@@ -472,7 +503,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3FAB73EB1CBC4DF3000DD5F5 /* Build configuration list for PBXProject "BlogReader" */ = {
+		3FAB73EB1CBC4DF3000DD5F5 /* Build configuration list for PBXProject "BDVore" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3FAB74181CBC4DF3000DD5F5 /* Debug */,
@@ -481,29 +512,32 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3FAB741A1CBC4DF3000DD5F5 /* Build configuration list for PBXNativeTarget "BlogReader" */ = {
+		3FAB741A1CBC4DF3000DD5F5 /* Build configuration list for PBXNativeTarget "BDVore" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3FAB741B1CBC4DF3000DD5F5 /* Debug */,
 				3FAB741C1CBC4DF3000DD5F5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		3FAB741D1CBC4DF3000DD5F5 /* Build configuration list for PBXNativeTarget "BlogReaderTests" */ = {
+		3FAB741D1CBC4DF3000DD5F5 /* Build configuration list for PBXNativeTarget "BDVoreTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3FAB741E1CBC4DF3000DD5F5 /* Debug */,
 				3FAB741F1CBC4DF3000DD5F5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		3FAB74201CBC4DF3000DD5F5 /* Build configuration list for PBXNativeTarget "BlogReaderUITests" */ = {
+		3FAB74201CBC4DF3000DD5F5 /* Build configuration list for PBXNativeTarget "BDVoreUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3FAB74211CBC4DF3000DD5F5 /* Debug */,
 				3FAB74221CBC4DF3000DD5F5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

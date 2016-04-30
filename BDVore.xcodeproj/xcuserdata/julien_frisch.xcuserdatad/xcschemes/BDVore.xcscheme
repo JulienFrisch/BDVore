@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3FAB73EF1CBC4DF3000DD5F5"
-               BuildableName = "BlogReader.app"
-               BlueprintName = "BlogReader"
-               ReferencedContainer = "container:BlogReader.xcodeproj">
+               BuildableName = "BDVore.app"
+               BlueprintName = "BDVore"
+               ReferencedContainer = "container:BDVore.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3FAB74051CBC4DF3000DD5F5"
-               BuildableName = "BlogReaderTests.xctest"
-               BlueprintName = "BlogReaderTests"
-               ReferencedContainer = "container:BlogReader.xcodeproj">
+               BuildableName = "BDVore.xctest"
+               BlueprintName = "BDVoreTests"
+               ReferencedContainer = "container:BDVore.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3FAB74101CBC4DF3000DD5F5"
-               BuildableName = "BlogReaderUITests.xctest"
-               BlueprintName = "BlogReaderUITests"
-               ReferencedContainer = "container:BlogReader.xcodeproj">
+               BuildableName = "BDVore.xctest"
+               BlueprintName = "BDVoreUITests"
+               ReferencedContainer = "container:BDVore.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -53,9 +53,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3FAB73EF1CBC4DF3000DD5F5"
-            BuildableName = "BlogReader.app"
-            BlueprintName = "BlogReader"
-            ReferencedContainer = "container:BlogReader.xcodeproj">
+            BuildableName = "BDVore.app"
+            BlueprintName = "BDVore"
+            ReferencedContainer = "container:BDVore.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -76,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3FAB73EF1CBC4DF3000DD5F5"
-            BuildableName = "BlogReader.app"
-            BlueprintName = "BlogReader"
-            ReferencedContainer = "container:BlogReader.xcodeproj">
+            BuildableName = "BDVore.app"
+            BlueprintName = "BDVore"
+            ReferencedContainer = "container:BDVore.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -95,9 +95,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3FAB73EF1CBC4DF3000DD5F5"
-            BuildableName = "BlogReader.app"
-            BlueprintName = "BlogReader"
-            ReferencedContainer = "container:BlogReader.xcodeproj">
+            BuildableName = "BDVore.app"
+            BlueprintName = "BDVore"
+            ReferencedContainer = "container:BDVore.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
