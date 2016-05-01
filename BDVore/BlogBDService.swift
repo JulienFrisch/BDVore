@@ -17,27 +17,32 @@ import UIKit
 class BlogService{
     
     //TODO: Create something more generic to initialize BlogsAPIURL
-    let blogRSSURL = NSURL(string: "http://bloglaurel.com/rss/fr")
+    let blogsRSSURL: [NSURL?] = [
+        NSURL(string: "http://bloglaurel.com/rss/fr"),
+        NSURL(string:"http://www.bouletcorp.com/feed/"),
+        NSURL(string: "http://vidberg.blog.lemonde.fr/feed/"),
+        NSURL(string:"http://blog.chabd.com/abonnement.xml")]
     
     
     /**
      Retrieve all the blogPosts
      */
-    func getBlogs(completion: ([BlogPost]? -> Void)){
+    func getBlogs(numberOfPosts: Int, completion: ([BlogPost]? -> Void)){
         //TODO: remove force unwrapping
-        let networkOperation = NetworkOperation(url: blogRSSURL!)
-        networkOperation.downloadXMLFromUrl{
-            (let xmlIndexer) in
+        for blogRSSURL in blogsRSSURL{
+            let networkOperation = NetworkOperation(url: blogRSSURL!)
+            networkOperation.downloadXMLFromUrl{
+                (let xmlIndexer) in
             
-            //let blogs = self.blogsFromRSS(xmlIndexer)
-            //completion(blogs)
+                //let blogs = self.blogsFromRSS(xmlIndexer)
+                //completion(blogs)
             
-            if let post = self.latestPostFromRSS(xmlIndexer) {
-                let blogs = [post]
-                completion(blogs)
-            }
+                if let posts = self.latestPostFromRSS(3, xmlIndexer: xmlIndexer) {
+                        completion(posts)
+                    }
 
-            }
+                }
+        }
     }
     
     /**
@@ -70,39 +75,62 @@ class BlogService{
     
     
     /**
-     Retrieve the latest post from a RSS feed (in an XML format)
+     Retrieve the latest post from a RSS feed (in an XMLIndexer format)
      */
-    func latestPostFromRSS(xmlIndexer: XMLIndexer?) -> BlogPost? {
-        //a post is always supposed to have a title, a link and a date
-        if let item = xmlIndexer?["rss"]["channel"][0],
-            let title = item["title"].element?.text,
-            let linkString = item["guid"].element?.text,
-            let dateString = item["pubDate"].element?.text{
-            
-                let date: NSDate = Date.parse(dateString, format: "EEE, dd MMM yyyy HH:mm:ss O")
-                let link: NSURL = NSURL(string: linkString)!
+    func latestPostFromRSS(numberOfPosts: Int, xmlIndexer: XMLIndexer?) -> [BlogPost]? {
+        var blogPosts = [BlogPost]()
+        for index in 0...numberOfPosts-1{
+            //We are taking the last three entries of the RSS feed
+            if let item = xmlIndexer?["rss"]["channel"]["item"][index]{
+                
+                //a post is always supposed to have a title, a link and a date
+                if let title = item["title"].element?.text,
+                    let linkString = item["guid"].element?.text,
+                    let dateString = item["pubDate"].element?.text,
+                    let author = authorFromRSS(xmlIndexer){
                     
-                return BlogPost(title: title, author: "Laurel", date: date, link: link, thumbnail: UIImage(named: "treehouse")!)
-            } else {
-            print("No proper entry found")
-            return nil
+                    let date: NSDate = Date.parse(dateString, format: "EEE, dd MMM yyyy HH:mm:ss O")
+                    let link: NSURL = NSURL(string: linkString)!
+                    let thumbnail: UIImage = getThumbnailImage(author)
+                    
+                    blogPosts.append(BlogPost(title: title, author: author, date: date, link: link, thumbnail: thumbnail))
+                    
+                }else {
+                    print("Title, URL or date missing")
+                }
+                
+            }else {
+                print("No entries found")
+            }
         }
+        return blogPosts
     }
     
+    //MARK: -Helper methods
     
-    //a post may not always have an image, hence thumbnailString might be nil
-    func getThumbnailImage(thumbnailString: String?) -> UIImage{
-        if let thumbnailString = thumbnailString,
-        let thumbnailURL = NSURL(string: thumbnailString),
-        let thumbnailImageData: NSData = NSData(contentsOfURL: thumbnailURL),
-            let thumbnailImage: UIImage = UIImage(data: thumbnailImageData){
+    /**
+    We retrive a thumbnail image from our library based on a set of predefined authors
+     */
+    func getThumbnailImage(author: String) -> UIImage{
+        if let thumbnailImage = UIImage(named: author){
             return thumbnailImage
-        }else{
-            print("No image found")
-            //TODO: Choose another default picture
+        } else {
+            //TODO: choose another default image
             return UIImage(named: "treehouse")!
         }
-        
+    }
+
+    /**
+     Retrieve the title of the site post from a RSS feed (in an XMLIndexer format)
+     */
+    func authorFromRSS(xmlIndexer: XMLIndexer?) -> String? {
+        //We are taking the very first entry of the RSS feed
+        if let author = xmlIndexer?["rss"]["channel"]["title"][0].element?.text{
+            return author
+        }else{
+            print("The RSS feed has no title / author")
+            return nil
+        }
     }
     
 }

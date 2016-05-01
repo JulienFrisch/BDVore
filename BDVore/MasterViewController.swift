@@ -22,7 +22,7 @@ class MasterViewController: UITableViewController {
     //We use this function to load all blogs in blogPosts and reload the table view
     func retrieveBlogs(){
         let blogService = BlogService()
-        blogService.getBlogs{
+        blogService.getBlogs(3){
             //closure with stored variable of type [NSDictionary]
             (let blogPosts) in
             //we unwrap blogs
@@ -31,25 +31,13 @@ class MasterViewController: UITableViewController {
                     self.blogPosts.append(post)
                 }
             }
+            //before reloading our data we want to sort the blogs by date
+            self.blogPosts.sortInPlace({$0.date.compare($1.date) == .OrderedDescending})
             //Warning: We are still on background thread. When updating UI, we need to be on the main thread. We use GDC API for that
             dispatch_async(dispatch_get_main_queue()){
                 self.tableView.reloadData()
-                print("reload data done")
             }
         }
-        
-        /* DELETED FOR NOW
-        // Do any additional setup after loading the view, typically from a nib.
-        self.navigationItem.leftBarButtonItem = self.editButtonItem()
-
-        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject:")
-        self.navigationItem.rightBarButtonItem = addButton
-        if let split = self.splitViewController {
-            let controllers = split.viewControllers
-            self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
-        }
-         */
-
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -61,14 +49,6 @@ class MasterViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    /* DELETED FOR NOW
-    func insertNewObject(sender: AnyObject) {
-        objects.insert(NSDate(), atIndex: 0)
-        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-        self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-    }
-     */
 
     // MARK: - Segues
 

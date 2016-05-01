@@ -19,7 +19,7 @@ class Date{
     
     //helper class to get the date as a nice String with a predefined format (hardcoded)
     class func getStringFromDate(date: NSDate) -> String{
-        let format = "EE dd MMM"
+        let format = "EE dd MMM HH:mm"
         let dateFmt = NSDateFormatter()
         dateFmt.timeZone = NSTimeZone.defaultTimeZone()
         dateFmt.dateFormat = format
