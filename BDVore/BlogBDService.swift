@@ -25,9 +25,9 @@ class BlogService{
     
     
     /**
-     Retrieve all the blogPosts
+     Retrieve all the blogPosts in multiple websites
      */
-    func getBlogs(numberOfPosts: Int, completion: ([BlogPost]? -> Void)){
+    func getBlogs(completion: ([BlogPost]? -> Void)){
         //TODO: remove force unwrapping
         for blogRSSURL in blogsRSSURL{
             let networkOperation = NetworkOperation(url: blogRSSURL!)
@@ -37,7 +37,7 @@ class BlogService{
                 //let blogs = self.blogsFromRSS(xmlIndexer)
                 //completion(blogs)
             
-                if let posts = self.latestPostFromRSS(3, xmlIndexer: xmlIndexer) {
+                if let posts = self.blogsFromRSS(xmlIndexer) {
                         completion(posts)
                     }
 
@@ -46,7 +46,7 @@ class BlogService{
     }
     
     /**
-     Retrieve a set of blogPosts from a RSS feed (in an XML format)
+     Retrieve all blogPosts from a RSS feed (in an XMLIndexer format)
      */
     func blogsFromRSS(xmlIndexer: XMLIndexer?) -> [BlogPost]? {
         if let entries = xmlIndexer?["rss"]["channel"]{
@@ -55,55 +55,46 @@ class BlogService{
                 //a post is always supposed to have a title, a link and a date
                 if let title = item["title"].element?.text,
                     let linkString = item["guid"].element?.text,
-                    let dateString = item["pubDate"].element?.text{
-                    
-                    let date: NSDate = Date.parse(dateString, format: "EEE, dd MMM yyyy HH:mm:ss O")
-                    let link: NSURL = NSURL(string: linkString)!
-                    
-                    let blogPost = BlogPost(title: title, author: "Laurel", date: date, link: link, thumbnail: UIImage(named: "treehouse")!)
-                    
-                    blogPosts.append(blogPost)
-                }
-                
-            }
-            return blogPosts
-        } else {
-            print("JSON Dictionary returned nil for 'posts' key")
-            return nil
-        }
-    }
-    
-    
-    /**
-     Retrieve the latest post from a RSS feed (in an XMLIndexer format)
-     */
-    func latestPostFromRSS(numberOfPosts: Int, xmlIndexer: XMLIndexer?) -> [BlogPost]? {
-        var blogPosts = [BlogPost]()
-        for index in 0...numberOfPosts-1{
-            //We are taking the last three entries of the RSS feed
-            if let item = xmlIndexer?["rss"]["channel"]["item"][index]{
-                
-                //a post is always supposed to have a title, a link and a date
-                if let title = item["title"].element?.text,
-                    let linkString = item["guid"].element?.text,
                     let dateString = item["pubDate"].element?.text,
                     let author = authorFromRSS(xmlIndexer){
                     
+                    print("Link:\(linkString)")
                     let date: NSDate = Date.parse(dateString, format: "EEE, dd MMM yyyy HH:mm:ss O")
                     let link: NSURL = NSURL(string: linkString)!
                     let thumbnail: UIImage = getThumbnailImage(author)
                     
                     blogPosts.append(BlogPost(title: title, author: author, date: date, link: link, thumbnail: thumbnail))
-                    
-                }else {
-                    print("Title, URL or date missing")
+                } else{
+                    print("Title, URL, Author or Date missing")
                 }
-                
-            }else {
-                print("No entries found")
             }
+            return blogPosts
+        } else {
+            print("No entries found")
+            return nil
         }
-        return blogPosts
+    }
+
+    
+    /**
+    Sort a set of blogs, group them by date, and send back multiple organized set of blog Posts
+    */
+    func organizeBlogPosts(blogPosts: [BlogPost], periodDays: Int = 7) -> [[BlogPost]]{
+        let today = NSDate()
+        var organizedBlogPosts = [[BlogPost]]()
+        print("today:\(Date.getStringFromDate(today))")
+        let yesterday = today.dateByAddingTimeInterval(-1*24*60*60)
+        print("Yesterday:\(Date.getStringFromDate(yesterday))")
+        for index in 0...periodDays-1 {
+            //filter based on date
+            var blogsInOneSection = blogPosts.filter({Date.sameDate($0.date, secondDate: today.dateByAddingTimeInterval(-Double(index)*24*60*60))})
+            //var blogsInOneSection = blogPosts.filter({$0.date.isEqualToDate(today.dateByAddingTimeInterval(-Double(index)*24*60*60))})
+            print("number of blogs in section\(index): \(blogsInOneSection.count)")
+            //sort by descending date order
+            blogsInOneSection.sortInPlace({$0.date.compare($1.date) == .OrderedDescending})
+            organizedBlogPosts.append(blogsInOneSection)
+        }
+        return organizedBlogPosts
     }
     
     //MARK: -Helper methods

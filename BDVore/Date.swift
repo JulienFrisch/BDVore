@@ -27,4 +27,24 @@ class Date{
         return dateFmt.stringFromDate(date)
     }
     
+    class func sameDate(firstDate: NSDate, secondDate: NSDate) -> Bool{
+        let calendar = NSCalendar.currentCalendar()
+        
+        let componentsFirstDate = calendar.components([.Day , .Month , .Year], fromDate: firstDate)
+        let year1 =  componentsFirstDate.year
+        let month1 = componentsFirstDate.month
+        let day1 = componentsFirstDate.day
+        
+        let componentsSecondDate = calendar.components([.Day , .Month , .Year], fromDate: secondDate)
+        let year2 =  componentsSecondDate.year
+        let month2 = componentsSecondDate.month
+        let day2 = componentsSecondDate.day
+        
+        if day1 == day2 && month1 == month2 && year1 == year2{
+            return true
+        } else {
+            return false
+        }
+    }
+    
 }

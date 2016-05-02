@@ -12,7 +12,14 @@ class MasterViewController: UITableViewController {
 
     var webViewController: WebViewController? = nil
     var objects = [AnyObject]()
-    var blogPosts: [BlogPost] = [BlogPost]()
+    var organizedBlogPosts = [[BlogPost]]()
+    let section = ["Aujourd'hui",
+                   "Hier",
+                   "Il y a deux jours",
+                   "Il y a trois jours",
+                   "Il y a quatre jours",
+                   "Il y a cinq jours",
+                   "Il y a six jours"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,19 +29,22 @@ class MasterViewController: UITableViewController {
     //We use this function to load all blogs in blogPosts and reload the table view
     func retrieveBlogs(){
         let blogService = BlogService()
-        blogService.getBlogs(3){
+        var unsortedBlogPosts = [BlogPost]()
+        blogService.getBlogs{
             //closure with stored variable of type [NSDictionary]
             (let blogPosts) in
             //we unwrap blogs
             if let blogPosts = blogPosts{
                 for post in blogPosts {
-                    self.blogPosts.append(post)
+                    unsortedBlogPosts.append(post)
                 }
             }
-            //before reloading our data we want to sort the blogs by date
-            self.blogPosts.sortInPlace({$0.date.compare($1.date) == .OrderedDescending})
+            
+            //TODO: remove from getBogs closure?
             //Warning: We are still on background thread. When updating UI, we need to be on the main thread. We use GDC API for that
             dispatch_async(dispatch_get_main_queue()){
+                self.organizedBlogPosts=blogService.organizeBlogPosts(unsortedBlogPosts, periodDays: self.section.count)
+                print("OrganizedBlogPosts completed")
                 self.tableView.reloadData()
             }
         }
@@ -58,7 +68,7 @@ class MasterViewController: UITableViewController {
                 let controller = (segue.destinationViewController as! UINavigationController).topViewController as! WebViewController
                 
                 //pass URL
-                let link = blogPosts[indexPath.row].link
+                let link = self.organizedBlogPosts[indexPath.section][indexPath.row].link
                 controller.blogPostURL = link
                 
                 //TODO: check what the rest if used for
@@ -69,25 +79,41 @@ class MasterViewController: UITableViewController {
     }
 
     // MARK: - Table View
-    //TODO: Organize sections by dates
 
-    //Return the number of sections in the tableau.
-    //In this example, no sections, so one by default
+
+    /**
+     Return Number of sections in the table
+     */
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return self.section.count
     }
 
-    //Number of titles in our array
+    /**
+    Return Number of entries in a section
+    */
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.blogPosts.count
+        print("section:\(section)")
+        //we check if organizedBlogPosts has already been initialized
+        if self.organizedBlogPosts.count == 0 {
+            //not initialized => we do not display anything
+            print("NOT INITIALIZED")
+            return 0
+        } else {
+            print("INITIALIZED:\(self.organizedBlogPosts[section].count)")
+            return self.organizedBlogPosts[section].count
+        }
+        //return self.blogPosts.count
     }
  
-    //return a table view cell
+    /**
+    Fill table view cells
+     */
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         //we use dequeueReusable to avoid loading too much data in case we have a long array
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
         //we retrieve the proper blogpost
-        let blogPost: BlogPost = self.blogPosts[indexPath.row]
+        //let blogPost: BlogPost = self.blogPosts[indexPath.row]
+        let blogPost : BlogPost = self.organizedBlogPosts[indexPath.section][indexPath.row]
         
         //we assign the title label to the cell as subtitle
         cell.textLabel?.text = blogPost.title
@@ -98,6 +124,15 @@ class MasterViewController: UITableViewController {
         //cell.imageView?.image = blogPost.thumbNail
         
         return cell
+    }
+    
+    /**
+    Name the section headers
+    */
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        return self.section[section]
+        
     }
 
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
