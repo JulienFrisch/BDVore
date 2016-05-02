@@ -37,6 +37,9 @@ class WebViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         //self.configureView()
         
+        //we want the web page to be scaled and we want to allow zoom in and zoom out
+        webView.scalesPageToFit = true
+        
         //to be updated
         if let url = blogPostURL{
             let urlRequest: NSURLRequest = NSURLRequest(URL: url)
