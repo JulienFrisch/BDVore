@@ -11,6 +11,7 @@ import Foundation
 class Date{
     
     class func parse(dateStr:String, format:String="yyyy-MM-dd") -> NSDate {
+        //TODO: Ability to detet and manage other date formats
         let dateFmt = NSDateFormatter()
         dateFmt.timeZone = NSTimeZone.defaultTimeZone()
         dateFmt.dateFormat = format

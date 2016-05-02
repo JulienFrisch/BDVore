@@ -21,7 +21,11 @@ class BlogService{
         NSURL(string: "http://bloglaurel.com/rss/fr"),
         NSURL(string:"http://www.bouletcorp.com/feed/"),
         NSURL(string: "http://vidberg.blog.lemonde.fr/feed/"),
-        NSURL(string:"http://blog.chabd.com/abonnement.xml")]
+        NSURL(string:"http://blog.chabd.com/abonnement.xml"),
+        NSURL(string:"http://obion.fr/blog/feed/"),
+        NSURL(string:"http://www.lewistrondheim.com/blog/rss/fil_rss.xml"),
+        //NSURL(string:"http://www.monsieur-le-chien.fr/rss.php"),
+        ]
     
     
     /**
