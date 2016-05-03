@@ -19,12 +19,18 @@ class BlogService{
     //TODO: Create something more generic to initialize BlogsAPIURL
     let blogsRSSURL: [NSURL?] = [
         NSURL(string: "http://bloglaurel.com/rss/fr"),
-        NSURL(string:"http://www.bouletcorp.com/feed/"),
         NSURL(string: "http://vidberg.blog.lemonde.fr/feed/"),
         NSURL(string:"http://blog.chabd.com/abonnement.xml"),
         NSURL(string:"http://obion.fr/blog/feed/"),
-        NSURL(string:"http://www.lewistrondheim.com/blog/rss/fil_rss.xml"),
+        NSURL(string:"http://www.paka-blog.com/feed/"),
+        NSURL(string:"http://www.juliemaroh.com/feed/"),
+        NSURL(string:"http://www.bouletcorp.com/feed/"),
+        NSURL(string:"http://yatuu.fr/feed/"),
+        
+        //NSURL(string:"http://www.lewistrondheim.com/blog/rss/fil_rss.xml"),
         //NSURL(string:"http://www.monsieur-le-chien.fr/rss.php"),
+        //NSURL(string:"http://koudavbine.blogspot.com/feeds/posts/default"),
+
         ]
     
     
@@ -62,7 +68,6 @@ class BlogService{
                     let dateString = item["pubDate"].element?.text,
                     let author = authorFromRSS(xmlIndexer){
                     
-                    print("Link:\(linkString)")
                     let date: NSDate = Date.parse(dateString, format: "EEE, dd MMM yyyy HH:mm:ss O")
                     let link: NSURL = NSURL(string: linkString)!
                     let thumbnail: UIImage = getThumbnailImage(author)
@@ -110,8 +115,8 @@ class BlogService{
         if let thumbnailImage = UIImage(named: author){
             return thumbnailImage
         } else {
-            //TODO: choose another default image
-            return UIImage(named: "treehouse")!
+            print("No pic found for:\(author)")
+            return UIImage(named: "default")!
         }
     }
 
