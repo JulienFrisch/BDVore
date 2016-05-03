@@ -24,6 +24,15 @@ class MasterViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         retrieveBlogs()
+        self.refreshControl?.addTarget(self, action: #selector(MasterViewController.handleRefresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+    }
+    
+    /**
+     We use this function to refresh the data. It is triggered when the tableview is pulled
+    */
+    func handleRefresh(refreshControl: UIRefreshControl) {
+        retrieveBlogs()
+        refreshControl.endRefreshing()
     }
     
     //We use this function to load all blogs in blogPosts and reload the table view
