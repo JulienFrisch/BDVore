@@ -91,14 +91,11 @@ class BlogService{
     func organizeBlogPosts(blogPosts: [BlogPost], periodDays: Int = 7) -> [[BlogPost]]{
         let today = NSDate()
         var organizedBlogPosts = [[BlogPost]]()
-        print("today:\(Date.getStringFromDate(today))")
-        let yesterday = today.dateByAddingTimeInterval(-1*24*60*60)
-        print("Yesterday:\(Date.getStringFromDate(yesterday))")
+        
         for index in 0...periodDays-1 {
             //filter based on date
             var blogsInOneSection = blogPosts.filter({Date.sameDate($0.date, secondDate: today.dateByAddingTimeInterval(-Double(index)*24*60*60))})
             //var blogsInOneSection = blogPosts.filter({$0.date.isEqualToDate(today.dateByAddingTimeInterval(-Double(index)*24*60*60))})
-            print("number of blogs in section\(index): \(blogsInOneSection.count)")
             //sort by descending date order
             blogsInOneSection.sortInPlace({$0.date.compare($1.date) == .OrderedDescending})
             organizedBlogPosts.append(blogsInOneSection)

@@ -13,6 +13,7 @@ class MasterViewController: UITableViewController {
     var webViewController: WebViewController? = nil
     var objects = [AnyObject]()
     var organizedBlogPosts = [[BlogPost]]()
+    //make sure you always enter ordered dates
     let section = ["Aujourd'hui",
                    "Hier",
                    "Il y a deux jours",
@@ -37,6 +38,7 @@ class MasterViewController: UITableViewController {
     
     //We use this function to load all blogs in blogPosts and reload the table view
     func retrieveBlogs(){
+        print("RetrieveBlogs launched")
         let blogService = BlogService()
         var unsortedBlogPosts = [BlogPost]()
         blogService.getBlogs{
@@ -57,6 +59,7 @@ class MasterViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         }
+        print("retrieveBlogs done")
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -101,14 +104,11 @@ class MasterViewController: UITableViewController {
     Return Number of entries in a section
     */
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("section:\(section)")
         //we check if organizedBlogPosts has already been initialized
         if self.organizedBlogPosts.count == 0 {
             //not initialized => we do not display anything
-            print("NOT INITIALIZED")
             return 0
         } else {
-            print("INITIALIZED:\(self.organizedBlogPosts[section].count)")
             return self.organizedBlogPosts[section].count
         }
         //return self.blogPosts.count
