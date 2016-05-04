@@ -16,12 +16,28 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_BDVore" translatesAutoresizingMaskIntoConstraints="NO" id="tNE-St-zgt">
+                                <rect key="frame" x="150" y="150" width="300" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="abA-7j-Afg"/>
+                                    <constraint firstAttribute="width" constant="300" id="fUf-wq-9h2"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.93725490196078431" blue="0.75686274509803919" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="tNE-St-zgt" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="7lG-KS-xov"/>
+                            <constraint firstItem="tNE-St-zgt" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Qv4-X5-ELV"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="49" y="177"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icon_BDVore" width="450" height="450"/>
+    </resources>
 </document>
