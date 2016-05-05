@@ -8,10 +8,12 @@
 
 import UIKit
 
+
 class WebViewController: UIViewController {
 
+    @IBOutlet var webViewNavigation: UINavigationItem!
     @IBOutlet var webView: UIWebView!
-    var blogPostURL: NSURL?
+    var blogPost: BlogPost?
 
     
     //TODO: What to do with this? Kind of replaced with blogPostURL
@@ -39,14 +41,14 @@ class WebViewController: UIViewController {
         //we want the web page to be scaled and we want to allow zoom in and zoom out
         webView.scalesPageToFit = true
         
-        //to be updated
-        if let url = blogPostURL{
-            let urlRequest: NSURLRequest = NSURLRequest(URL: url)
+        //we unwrap blogPost
+        if let blogPost = blogPost{
+            webViewNavigation.title = blogPost.author
+            let urlRequest: NSURLRequest = NSURLRequest(URL: blogPost.link)
             self.webView.loadRequest(urlRequest)
         } else {
             print("No URL found")
         }
-        
     }
 
     override func didReceiveMemoryWarning() {

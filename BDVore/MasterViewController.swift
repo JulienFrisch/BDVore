@@ -79,9 +79,8 @@ class MasterViewController: UITableViewController {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 let controller = (segue.destinationViewController as! UINavigationController).topViewController as! WebViewController
                 
-                //pass URL
-                let link = self.organizedBlogPosts[indexPath.section][indexPath.row].link
-                controller.blogPostURL = link
+                //pass blog
+                controller.blogPost = self.organizedBlogPosts[indexPath.section][indexPath.row]
                 
                 //TODO: check what the rest if used for
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()

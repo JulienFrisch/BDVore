@@ -51,6 +51,7 @@
                     <connections>
                         <outlet property="WebView" destination="cZn-s7-8iu" id="bYF-v2-6Fm"/>
                         <outlet property="webView" destination="cZn-s7-8iu" id="duN-Za-J0a"/>
+                        <outlet property="webViewNavigation" destination="mOI-FS-AaM" id="B13-TJ-SWO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
