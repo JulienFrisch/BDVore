@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_BDVore" translatesAutoresizingMaskIntoConstraints="NO" id="tNE-St-zgt">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_BDVore" translatesAutoresizingMaskIntoConstraints="NO" id="tNE-St-zgt">
                                 <rect key="frame" x="150" y="150" width="300" height="300"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="abA-7j-Afg"/>
@@ -25,7 +25,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.93725490196078431" blue="0.75686274509803919" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="0.94901960784313721" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="tNE-St-zgt" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="7lG-KS-xov"/>
                             <constraint firstItem="tNE-St-zgt" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Qv4-X5-ELV"/>
