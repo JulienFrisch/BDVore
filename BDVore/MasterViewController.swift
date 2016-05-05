@@ -39,6 +39,10 @@ class MasterViewController: UITableViewController {
     //We use this function to load all blogs in blogPosts and reload the table view
     func retrieveBlogs(){
         print("RetrieveBlogs launched")
+        
+        //set a lock during your async function
+        var locked = true
+        
         let blogService = BlogService()
         var unsortedBlogPosts = [BlogPost]()
         blogService.getBlogs{
@@ -50,17 +54,25 @@ class MasterViewController: UITableViewController {
                     unsortedBlogPosts.append(post)
                 }
             }
-            
-            //TODO: remove from getBogs closure?
-            //Warning: We are still on background thread. When updating UI, we need to be on the main thread. We use GDC API for that
-            dispatch_async(dispatch_get_main_queue()){
-                self.organizedBlogPosts=blogService.organizeBlogPosts(unsortedBlogPosts, periodDays: self.section.count)
-                print("OrganizedBlogPosts completed")
-                self.tableView.reloadData()
-            }
+        locked = false
         }
+        while(locked){wait()}
         print("retrieveBlogs done")
+        //TODO: remove from getBogs closure?
+        //Warning: We are still on background thread. When updating UI, we need to be on the main thread. We use GDC API for that
+        dispatch_async(dispatch_get_main_queue()){
+            self.organizedBlogPosts=blogService.organizeBlogPosts(unsortedBlogPosts, periodDays: self.section.count)
+            print("OrganizedBlogPosts completed")
+            self.tableView.reloadData()
+        }
     }
+    
+    
+    func wait()
+    {
+        NSRunLoop.currentRunLoop().runMode(NSDefaultRunLoopMode, beforeDate: NSDate(timeIntervalSinceNow: 1))
+    }
+    
 
     override func viewWillAppear(animated: Bool) {
         self.clearsSelectionOnViewWillAppear = self.splitViewController!.collapsed
