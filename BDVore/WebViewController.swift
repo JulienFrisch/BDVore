@@ -10,7 +10,6 @@ import UIKit
 
 class WebViewController: UIViewController {
 
-    @IBOutlet weak var detailDescriptionLabel: UILabel!
     @IBOutlet var webView: UIWebView!
     var blogPostURL: NSURL?
 
