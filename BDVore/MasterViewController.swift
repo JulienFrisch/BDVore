@@ -14,7 +14,8 @@ class MasterViewController: UITableViewController {
     var objects = [AnyObject]()
     var organizedBlogPosts = [[BlogPost]]()
     //make sure you always enter ordered dates
-    let section = ["Aujourd'hui",
+    //sections will later be refined depending on whether or not each section has at least one blogPost
+    var sections = ["Aujourd'hui",
                    "Hier",
                    "Il y a deux jours",
                    "Il y a trois jours",
@@ -54,10 +55,11 @@ class MasterViewController: UITableViewController {
             }
         locked = false
         }
+        //we wait for the getBlogs closure to finish before moving on
         while(locked){Delay.wait()}
         //Warning: We are still on background thread. When updating UI, we need to be on the main thread. We use GDC API for that
         dispatch_async(dispatch_get_main_queue()){
-            self.organizedBlogPosts=blogService.organizeBlogPosts(unsortedBlogPosts, periodDays: self.section.count)
+            (self.organizedBlogPosts,self.sections)=blogService.organizeBlogPosts(unsortedBlogPosts, sections: self.sections)
             self.tableView.reloadData()
         }
     }
@@ -97,7 +99,7 @@ class MasterViewController: UITableViewController {
      Return Number of sections in the table
      */
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return self.section.count
+        return self.sections.count
     }
 
     /**
@@ -111,7 +113,6 @@ class MasterViewController: UITableViewController {
         } else {
             return self.organizedBlogPosts[section].count
         }
-        //return self.blogPosts.count
     }
  
     /**
@@ -137,11 +138,10 @@ class MasterViewController: UITableViewController {
     
     /**
     Name the section headers
+    Needs to be called once sections have been refined to remove empty sections
     */
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        
-        return self.section[section]
-        
+        return self.sections[section]
     }
 
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

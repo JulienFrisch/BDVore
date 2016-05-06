@@ -93,21 +93,28 @@ class BlogService{
 
     
     /**
-    Sort a set of blogs, group them by date, and send back multiple organized set of blog Posts
+    Sort a set of blogs, group them by date, and send back multiple organized set of blog Posts along with an updated array of non-empty sections
     */
-    func organizeBlogPosts(blogPosts: [BlogPost], periodDays: Int = 7) -> [[BlogPost]]{
+    func organizeBlogPosts(blogPosts: [BlogPost], sections: [String]) -> ([[BlogPost]],[String]){
         let today = NSDate()
         var organizedBlogPosts = [[BlogPost]]()
+        var organizedSections = [String]()
         
-        for index in 0...periodDays-1 {
+        for index in 0...sections.count-1 {
             //filter based on date
             var blogsInOneSection = blogPosts.filter({Date.sameDate($0.date, secondDate: today.dateByAddingTimeInterval(-Double(index)*24*60*60))})
-            //var blogsInOneSection = blogPosts.filter({$0.date.isEqualToDate(today.dateByAddingTimeInterval(-Double(index)*24*60*60))})
-            //sort by descending date order
-            blogsInOneSection.sortInPlace({$0.date.compare($1.date) == .OrderedDescending})
-            organizedBlogPosts.append(blogsInOneSection)
+
+            //we do not want to create empty sections
+            if blogsInOneSection.count != 0 {
+                //sort by descending date order
+                blogsInOneSection.sortInPlace({$0.date.compare($1.date) == .OrderedDescending})
+                organizedBlogPosts.append(blogsInOneSection)
+                organizedSections.append(sections[index])
+            } else {
+                print("no blogs for section: \(sections[index])")
+            }
         }
-        return organizedBlogPosts
+        return (organizedBlogPosts,organizedSections)
     }
     
     //MARK: -Helper methods
