@@ -38,8 +38,6 @@ class MasterViewController: UITableViewController {
     
     //We use this function to load all blogs in blogPosts and reload the table view
     func retrieveBlogs(){
-        print("RetrieveBlogs launched")
-        
         //set a lock during your async function
         var locked = true
         
@@ -56,21 +54,12 @@ class MasterViewController: UITableViewController {
             }
         locked = false
         }
-        while(locked){wait()}
-        print("retrieveBlogs done")
-        //TODO: remove from getBogs closure?
+        while(locked){Delay.wait()}
         //Warning: We are still on background thread. When updating UI, we need to be on the main thread. We use GDC API for that
         dispatch_async(dispatch_get_main_queue()){
             self.organizedBlogPosts=blogService.organizeBlogPosts(unsortedBlogPosts, periodDays: self.section.count)
-            print("OrganizedBlogPosts completed")
             self.tableView.reloadData()
         }
-    }
-    
-    
-    func wait()
-    {
-        NSRunLoop.currentRunLoop().runMode(NSDefaultRunLoopMode, beforeDate: NSDate(timeIntervalSinceNow: 1))
     }
     
 

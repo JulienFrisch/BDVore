@@ -36,48 +36,36 @@ class BlogService{
     
     /**
      Retrieve all the blogPosts in multiple websites
-     TODO: SEND MULTIPLE COMPLETION, NEEDS TO BE FIXED
      */
     func getBlogs(completion: ([BlogPost]? -> Void)){
         
         var blogPosts = [BlogPost]()
         
+        //we are using lockIndex to check how many threads have completed
+        var lockIndex = 0
         
         //TODO: remove force unwrapping
         for blogRSSURL in blogsRSSURL{
-            var locked = true
             let networkOperation = NetworkOperation(url: blogRSSURL!)
             networkOperation.downloadXMLFromUrl{
                 (let xmlIndexer) in
                 if let posts = self.blogsFromRSS(xmlIndexer) {
                     blogPosts.appendContentsOf(posts)
+
                     }
-                locked = false
+                //Once a thread is done, we add one to lockIndex
+                lockIndex += 1
                 }
-            while(locked){wait()}
         }
+        //while all the threads have not completed, we want to wait
+        while(lockIndex != blogsRSSURL.count){Delay.wait()}
         completion(blogPosts)
-        print("getBlogs function done")
-        print("Number of blogs:\(blogPosts.count)")
     }
-    
-
-
-    func wait()
-    {
-        NSRunLoop.currentRunLoop().runMode(NSDefaultRunLoopMode, beforeDate: NSDate(timeIntervalSinceNow: 1))
-    }
-    
-    
     
     /**
      Retrieve all blogPosts from a RSS feed (in an XMLIndexer format)
      */
     func blogsFromRSS(xmlIndexer: XMLIndexer?) -> [BlogPost]? {
-        
-        var locked = true
-        
-        
         if let entries = xmlIndexer?["rss"]["channel"]{
             var blogPosts = [BlogPost]()
             for item in entries["item"]{
@@ -92,13 +80,9 @@ class BlogService{
                     let thumbnail: UIImage = getThumbnailImage(author)
                     
                     blogPosts.append(BlogPost(title: title, author: author, date: date, link: link, thumbnail: thumbnail))
-                    print("entry found")
-                    locked = false
                 } else{
                     print("Title, URL, Author or Date missing")
-                    locked = false
                 }
-                while(locked){wait()}
             }
             return blogPosts
         } else {

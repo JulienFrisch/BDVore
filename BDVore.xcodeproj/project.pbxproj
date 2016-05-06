@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3F6DEC201CCD737E00977DEC /* BlogPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6DEC1F1CCD737E00977DEC /* BlogPost.swift */; };
+		3F829E4F1CDCDCA2009623CF /* Wait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F829E4E1CDCDCA2009623CF /* Wait.swift */; };
 		3F9954A11CBDBC0300BA5FCF /* BlogBDService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9954A01CBDBC0300BA5FCF /* BlogBDService.swift */; };
 		3FA745EC1CDBE561004190F5 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA745EB1CDBE561004190F5 /* LoadingViewController.swift */; };
 		3FAB73F41CBC4DF3000DD5F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAB73F31CBC4DF3000DD5F5 /* AppDelegate.swift */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		3F6DEC1F1CCD737E00977DEC /* BlogPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogPost.swift; sourceTree = "<group>"; };
+		3F829E4E1CDCDCA2009623CF /* Wait.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wait.swift; sourceTree = "<group>"; };
 		3F9954A01CBDBC0300BA5FCF /* BlogBDService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogBDService.swift; sourceTree = "<group>"; };
 		3FA745EB1CDBE561004190F5 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		3FAB73F01CBC4DF3000DD5F5 /* BDVore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BDVore.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,6 +129,7 @@
 				3F9954A01CBDBC0300BA5FCF /* BlogBDService.swift */,
 				3F6DEC1F1CCD737E00977DEC /* BlogPost.swift */,
 				3FB0404C1CD169E8009EA4DF /* SWXMLHash.swift */,
+				3F829E4E1CDCDCA2009623CF /* Wait.swift */,
 			);
 			path = BDVore;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 			files = (
 				3FAB74241CBC833D000DD5F5 /* NetworkOperation.swift in Sources */,
 				3FB0404D1CD169E8009EA4DF /* SWXMLHash.swift in Sources */,
+				3F829E4F1CDCDCA2009623CF /* Wait.swift in Sources */,
 				3FAB73F81CBC4DF3000DD5F5 /* WebViewController.swift in Sources */,
 				3FEA645B1CCED3230059A182 /* Date.swift in Sources */,
 				3FAB73F61CBC4DF3000DD5F5 /* MasterViewController.swift in Sources */,

@@ -13,9 +13,6 @@ class LoadingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("let the wait begin")
-        sleep(1)
-        print("Loading over")
         performSegueWithIdentifier("loadingOver", sender: nil)
 
         // Do any additional setup after loading the view.
