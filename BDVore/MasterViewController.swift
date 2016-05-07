@@ -45,7 +45,7 @@ class MasterViewController: UITableViewController {
         let blogService = BlogService()
         var unsortedBlogPosts = [BlogPost]()
         blogService.getBlogs{
-            //closure with stored variable of type [NSDictionary]
+            //closure with stored variable of type [BlogPost]
             (let blogPosts) in
             //we unwrap blogs
             if let blogPosts = blogPosts{

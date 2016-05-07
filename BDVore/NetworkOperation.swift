@@ -40,10 +40,12 @@ class NetworkOperation{
                     completion(xmlIndexer)
                     
                 default: print("Get Request not succesful, HTTP status code: \(httpResponse.statusCode))")
+                    completion(nil)
                 }
                 
             } else {
                 print("Error, not a valid URL response")
+                completion(nil)
             }
         }
         dataTask.resume()
