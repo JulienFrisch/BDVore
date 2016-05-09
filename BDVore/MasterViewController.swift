@@ -15,13 +15,7 @@ class MasterViewController: UITableViewController {
     
     //make sure you always enter ordered dates
     //sections will later be refined depending on whether or not each section has at least one blogPost
-    var sections = ["Aujourd'hui",
-                   "Hier",
-                   "Il y a deux jours",
-                   "Il y a trois jours",
-                   "Il y a quatre jours",
-                   "Il y a cinq jours",
-                   "Il y a six jours"]
+    var sections = [String]()
     
     //label used when no blogPosts available, managed programmatically
     var noBlogsLabel = UILabel()
@@ -144,6 +138,9 @@ class MasterViewController: UITableViewController {
     We use this function to load all blogs in blogPosts and reload the table view
     */
     func retrieveBlogs(){
+        //reset reset sections
+        initializeSections()
+        
         //set a lock during your async function
         var locked = true
         
@@ -198,8 +195,6 @@ class MasterViewController: UITableViewController {
      Display the no blogs information message
     */
     func displayNoBlogsLabel(){
-        print("display no blogs")
-        
         //add it to the view
         self.view.addSubview(self.noBlogsLabel)
     }
@@ -211,6 +206,20 @@ class MasterViewController: UITableViewController {
         self.noBlogsLabel.removeFromSuperview()
     }
 
+    /**
+    We initialize the sections
+    TODO: Use something else than hard coded values
+    */
+    func initializeSections(){
+        self.sections =
+            ["Aujourd'hui",
+             "Hier",
+             "Il y a deux jours",
+             "Il y a trois jours",
+             "Il y a quatre jours",
+             "Il y a cinq jours",
+             "Il y a six jours"]
+    }
 
 }
 
