@@ -10,9 +10,9 @@ import UIKit
 
 class MasterViewController: UITableViewController {
 
-    var webViewController: WebViewController? = nil
-    var objects = [AnyObject]()
+    //contain the blogs display in the table
     var organizedBlogPosts = [[BlogPost]]()
+    
     //make sure you always enter ordered dates
     //sections will later be refined depending on whether or not each section has at least one blogPost
     var sections = ["Aujourd'hui",
@@ -22,46 +22,34 @@ class MasterViewController: UITableViewController {
                    "Il y a quatre jours",
                    "Il y a cinq jours",
                    "Il y a six jours"]
-
+    
+    //label used when no blogPosts available, managed programmatically
+    var noBlogsLabel = UILabel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //we initiate the no blogs label but do not display it
+        initiateNoBlogsLabel()
+        
+        //retrieve blogs in organizedBlogPosts and display tableview
         retrieveBlogs()
+        
+        //add a refresh button
         self.refreshControl?.addTarget(self, action: #selector(MasterViewController.handleRefresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        
     }
     
     /**
      We use this function to refresh the data. It is triggered when the tableview is pulled
     */
     func handleRefresh(refreshControl: UIRefreshControl) {
-        retrieveBlogs()
-        refreshControl.endRefreshing()
-    }
-    
-    //We use this function to load all blogs in blogPosts and reload the table view
-    func retrieveBlogs(){
-        //set a lock during your async function
-        var locked = true
         
-        let blogService = BlogService()
-        var unsortedBlogPosts = [BlogPost]()
-        blogService.getBlogs{
-            //closure with stored variable of type [BlogPost]
-            (let blogPosts) in
-            //we unwrap blogs
-            if let blogPosts = blogPosts{
-                for post in blogPosts {
-                    unsortedBlogPosts.append(post)
-                }
-            }
-        locked = false
-        }
-        //we wait for the getBlogs closure to finish before moving on
-        while(locked){Delay.wait()}
-        //Warning: We are still on background thread. When updating UI, we need to be on the main thread. We use GDC API for that
-        dispatch_async(dispatch_get_main_queue()){
-            (self.organizedBlogPosts,self.sections)=blogService.organizeBlogPosts(unsortedBlogPosts, sections: self.sections)
-            self.tableView.reloadData()
-        }
+        retrieveBlogs()
+        
+        //we ask the refresh wheel (refreshControl) to stop turning
+        refreshControl.endRefreshing()
+        
     }
     
 
@@ -152,22 +140,76 @@ class MasterViewController: UITableViewController {
     
     //MARK: -Helper methods
     
-//    func assignBlogPosts(blogs: [NSDictionary]) -> [NSDictionary] {
-//        for entry in blogs {
-//            let blog = ["title",entry.va]
-//        }
-//    }
-
-    /*DELETED FOR NOW
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            objects.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+    /**
+    We use this function to load all blogs in blogPosts and reload the table view
+    */
+    func retrieveBlogs(){
+        //set a lock during your async function
+        var locked = true
+        
+        let blogService = BlogService()
+        var unsortedBlogPosts = [BlogPost]()
+        blogService.getBlogs{
+            //closure with stored variable of type [BlogPost]
+            (let blogPosts) in
+            //we unwrap blogs
+            if let blogPosts = blogPosts{
+                unsortedBlogPosts.appendContentsOf(blogPosts)
+            }
+            locked = false
+        }
+        //we wait for the getBlogs closure to finish before moving on
+        while(locked){Delay.wait()}
+        //Warning: We are still on background thread. When updating UI, we need to be on the main thread. We use GDC API for that
+        dispatch_async(dispatch_get_main_queue()){
+            (self.organizedBlogPosts,self.sections)=blogService.organizeBlogPosts(unsortedBlogPosts, sections: self.sections)
+            
+            //we update the table view
+            self.tableView.reloadData()
+            
+            //check if no blogPosts
+            if self.organizedBlogPosts.count == 0 {
+                //display a "no blogs" message
+                self.displayNoBlogsLabel()
+            } else {
+                self.hideNoBlogsLabel()
+            }
         }
     }
+    
+    /**
+    Create the no blogs label, but does not display it
     */
+    func initiateNoBlogsLabel(){
+        //Initialize noBlogsLabel: position & Text Alignment
+
+        //Position
+        let frame: CGRect = UIScreen.mainScreen().bounds //get screen frame size
+        self.noBlogsLabel = UILabel(frame:  CGRectMake(0, 0, frame.size.width, frame.size.height))
+        
+        //text alignment
+        self.noBlogsLabel.textAlignment = NSTextAlignment.Center
+        
+        //Initialize noBlogsLabel: text
+        self.noBlogsLabel.text = "Pas de nouveaux posts cette semaine! :("
+    }
+    
+    /**
+     Display the no blogs information message
+    */
+    func displayNoBlogsLabel(){
+        print("display no blogs")
+        
+        //add it to the view
+        self.view.addSubview(self.noBlogsLabel)
+    }
+    
+    /**
+    Hide the no blog information message
+    */
+    func hideNoBlogsLabel(){
+        self.noBlogsLabel.removeFromSuperview()
+    }
 
 
 }

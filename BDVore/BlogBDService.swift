@@ -12,20 +12,19 @@ import UIKit
 /*
  For now the class will be used to call NetworkOperation, retrieve the required data, and assign it to an array
  Once we have a more complex blog class (for now just [NSDictionary]), we will need to refine this method
- 
  */
 class BlogService{
     
     //TODO: Create something more generic to initialize BlogsAPIURL
     let blogsRSSURL: [NSURL?] = [
-        NSURL(string: "http://bloglaurel.com/rss/fr"),
-        NSURL(string: "http://vidberg.blog.lemonde.fr/feed/"),
-        NSURL(string:"http://blog.chabd.com/abonnement.xml"),
-        NSURL(string:"http://obion.fr/blog/feed/"),
-        NSURL(string:"http://www.paka-blog.com/feed/"),
-        NSURL(string:"http://www.juliemaroh.com/feed/"),
-        NSURL(string:"http://www.bouletcorp.com/feed/"),
-        NSURL(string:"http://yatuu.fr/feed/"),
+        NSURL(string: "ahttp://bloglaurel.com/rss/fr"),
+        NSURL(string: "ahttp://vidberg.blog.lemonde.fr/feed/"),
+        NSURL(string:"ahttp://blog.chabd.com/abonnement.xml"),
+        NSURL(string:"ahttp://obion.fr/blog/feed/"),
+        NSURL(string:"ahttp://www.paka-blog.com/feed/"),
+        NSURL(string:"ahttp://www.juliemaroh.com/feed/"),
+        NSURL(string:"ahttp://www.bouletcorp.com/feed/"),
+        NSURL(string:"ahttp://yatuu.fr/feed/"),
         
         //NSURL(string:"http://www.lewistrondheim.com/blog/rss/fil_rss.xml"),
         //NSURL(string:"http://www.monsieur-le-chien.fr/rss.php"),
