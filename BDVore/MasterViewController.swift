@@ -32,6 +32,9 @@ class MasterViewController: UITableViewController {
         //add a refresh button
         self.refreshControl?.addTarget(self, action: #selector(MasterViewController.handleRefresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
         
+        //Hide navigation controller
+        self.navigationController?.navigationBarHidden = true
+        
     }
     
     /**
@@ -50,11 +53,23 @@ class MasterViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         self.clearsSelectionOnViewWillAppear = self.splitViewController!.collapsed
         super.viewWillAppear(animated)
+        
+        //Hide navigation controller
+        self.navigationController?.navigationBarHidden = true
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        print("test")
+        super.viewWillDisappear(animated)
+        
+        //we display the navigation controller again
+        self.navigationController?.navigationBarHidden = false
+
     }
 
     // MARK: - Segues
