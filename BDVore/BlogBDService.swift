@@ -17,17 +17,16 @@ class BlogService{
     
     //TODO: Create something more generic to initialize BlogsAPIURL
     let blogsRSSURL: [NSURL?] = [
-        NSURL(string: "http://bloglaurel.com/rss/fr"),
-        NSURL(string: "http://vidberg.blog.lemonde.fr/feed/"),
-        NSURL(string:"http://blog.chabd.com/abonnement.xml"),
-        NSURL(string:"http://obion.fr/blog/feed/"),
-        NSURL(string:"http://www.paka-blog.com/feed/"),
-        NSURL(string:"http://www.juliemaroh.com/feed/"),
-        NSURL(string:"http://www.bouletcorp.com/feed/"),
-        NSURL(string:"http://yatuu.fr/feed/"),
-        
+        //NSURL(string: "http://bloglaurel.com/rss/fr"),
+        //NSURL(string: "http://vidberg.blog.lemonde.fr/feed/"),
+        //NSURL(string:"http://blog.chabd.com/abonnement.xml"),
+        //NSURL(string:"http://obion.fr/blog/feed/"),
+        //NSURL(string:"http://www.paka-blog.com/feed/"),
+        //NSURL(string:"http://www.juliemaroh.com/feed/"),
+        //NSURL(string:"http://www.bouletcorp.com/feed/"),
+        //NSURL(string:"http://yatuu.fr/feed/"),
+        NSURL(string:"http://www.monsieur-le-chien.fr/rss.php")
         //NSURL(string:"http://www.lewistrondheim.com/blog/rss/fil_rss.xml"),
-        //NSURL(string:"http://www.monsieur-le-chien.fr/rss.php"),
         //NSURL(string:"http://koudavbine.blogspot.com/feeds/posts/default"),
 
         ]
@@ -73,12 +72,18 @@ class BlogService{
                     let linkString = item["guid"].element?.text,
                     let dateString = item["pubDate"].element?.text,
                     let author = authorFromRSS(xmlIndexer){
-                    
-                    let date: NSDate = Date.parse(dateString, format: "EEE, dd MMM yyyy HH:mm:ss O")
-                    let link: NSURL = NSURL(string: linkString)!
-                    let thumbnail: UIImage = getThumbnailImage(author)
-                    
-                    blogPosts.append(BlogPost(title: title, author: author, date: date, link: link, thumbnail: thumbnail))
+                        //we need to make sure we can parse the date
+                        do {
+                            let date = try Date.parse(dateString)
+                            let link: NSURL = NSURL(string: linkString)!
+                            let thumbnail: UIImage = getThumbnailImage(author)
+                        
+                            blogPosts.append(BlogPost(title: title, author: author, date: date, link: link, thumbnail: thumbnail))
+                        } catch DateError.unknownFormat(let errorMessage){
+                            print(errorMessage)
+                        } catch {
+                            print("Unexpected error while reviewing\(title) from \(author).")
+                        }
                 } else{
                     print("Title, URL, Author or Date missing")
                 }

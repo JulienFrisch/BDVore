@@ -8,14 +8,33 @@
 
 import Foundation
 
+enum DateError: ErrorType{
+    case unknownFormat(String)
+}
+
 class Date{
     
-    class func parse(dateStr:String, format:String="yyyy-MM-dd") -> NSDate {
-        //TODO: Ability to detet and manage other date formats
+    class func parse(dateStr:String) throws -> NSDate {
+        
         let dateFmt = NSDateFormatter()
         dateFmt.timeZone = NSTimeZone.defaultTimeZone()
-        dateFmt.dateFormat = format
-        return dateFmt.dateFromString(dateStr)!
+        
+        //we try first with the usual date format
+        dateFmt.dateFormat = "EEE, dd MMM yyyy HH:mm:ss O"
+        if let date = dateFmt.dateFromString(dateStr){
+            return date
+        } else {
+            //we try with a second date format
+            dateFmt.dateFormat = "dd/MM/yyyy"
+            //we remove the " CET" because it is useless
+            let newDateStr = dateStr.stringByReplacingOccurrencesOfString(" CET", withString: "")
+            if let date = dateFmt.dateFromString(newDateStr){
+                return date
+            } else {
+                //nothing worked, throw an exception
+                throw DateError.unknownFormat("Error: cannot parse the date:\(dateStr)")
+            }
+        }
     }
     
     //helper class to get the date as a nice String with a predefined format (hardcoded)
